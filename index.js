@@ -860,17 +860,21 @@ client.on('messageCreate', (message) => {
 	if (commandos === "d$dm$") {
 		if (message.channel.type != 'DM') {
 			let b = arguss[0];
-			let nick = arguss[1];
+			let c = arguss[1];
+			let nick = arguss[2];
 			let nickmember = message.guild.members.cache.find(member => member.displayName === nick);
 			let memberlist = '^' + message.guild.members.cache.map(m=>m.displayName).join('^') + '^';
-			
 			let chan = message.channel.name;
 			if (chan == 'audit-log') {
 				if (memberlist.includes('^' + nick + '^')) {
 					let channelid = nickmember.user.dmChannel;
 					channelid.messages.fetch({limit: 99}).then(msg => {
-						const specMessage = msg.filter(msg => msg.content.includes(b));
-						channelid.bulkDelete(specMessage);
+						const specMessage = msg.filter(msg => msg.content.includes(b)).map(m=>m.id).join('\n');
+						async function edit() {
+							const message = await channelid.messages.fetch(specMessage);
+							await message.delete();
+						}
+						edit();
 					});
 					message.channel.send(`DM has been deleted.`);
 				} else {
