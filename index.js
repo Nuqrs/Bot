@@ -980,9 +980,9 @@ client.on('messageCreate', (message) => {
 			let nauthorpic = arguss[5];
 			let nimage = arguss[6];
 			let nfooter = arguss[7];
-			let channelname = arguss[8];
-			let channelid = message.guild.channels.cache.find(i => i.name === channelname);
-			let chanlist = '^' + message.guild.channels.cache.map(m=>m.name).join('^') + '^';
+			let nick = arguss[8];
+			let nickmember = message.guild.members.cache.find(member => member.displayName === nick);
+			let memberlist = '^' + message.guild.members.cache.map(m=>m.displayName).join('^') + '^';
 			let chan = message.channel.name;
 			if (nauthorpic.includes(' ')) {
 				message.channel.send(`Invalid author avatar.`);
@@ -991,7 +991,8 @@ client.on('messageCreate', (message) => {
 					message.channel.send(`Invalid image.`);
 				} else {
 					if (chan == 'audit-log') {
-						if (chanlist.includes('^' + channelname + '^')) {
+						if (memberlist.includes('^' + nick + '^')) {
+							let channelid = nickmember.user.dmChannel;
 							const exampleEmbed = new MessageEmbed()
 							.setColor('RANDOM')
 							.setTitle(ntitle)
@@ -1019,9 +1020,9 @@ client.on('messageCreate', (message) => {
 								}
 								edit();
 							});
-							message.channel.send(`Embed has been edited.`);
+							message.channel.send(`Embed in DM has been edited.`);
 						} else {
-							message.channel.send(`${channelname} is not a valid channel in this server.`);
+							message.channel.send(`${nick} is not a valid nickname of a user in this server.`);
 						}
 					} else {
 						message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
