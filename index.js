@@ -277,16 +277,21 @@ client.on('messageCreate', (message) => {
 		if (message.channel.type != 'DM') {
 			let rname = argus[0];
 			let rcolor = argus[1];
+			let rolelist = ',' + message.guild.roles.cache.map(m=>m.name).join(',') + ',';
 			let chan = message.channel.name;
 			if (chan == 'audit-log') {
-				message.guild.roles.create({
-					name: rname,
-					color: rcolor,
-					reason: 'Reason',
-				})
-					.then(console.log)
-					.catch(console.error);
-				message.channel.send(`The role "${rname}" has been created.`);
+				if (rolelist.includes(',' + rname + ',')) {
+					message.channel.send(`${rname} is already the name of a role in this server.`);
+				} else {
+					message.guild.roles.create({
+						name: rname,
+						color: rcolor,
+						reason: 'Reason',
+					})
+						.then(console.log)
+						.catch(console.error);
+					message.channel.send(`The role "${rname}" has been created.`);
+				}
 			} else {
 				message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
 			}
@@ -304,8 +309,12 @@ client.on('messageCreate', (message) => {
 			let chan = message.channel.name;
 			if (chan == 'audit-log') {
 				if (rolelist.includes(',' + rname + ',')) {
-					titlerole.edit({name: nname});
-					message.channel.send(`${rname} has been renamed to ${titlerole}.`);
+					if (rolelist.includes(',' + nname + ',')) {
+						message.channel.send(`${nname} is already the name of a role in this server.`);
+					} else {
+						titlerole.edit({name: nname});
+						message.channel.send(`${rname} has been renamed to ${titlerole}.`);
+					}
 				} else {
 					message.channel.send(`${rname} is not a valid role in this server.`);
 				}
@@ -347,8 +356,12 @@ client.on('messageCreate', (message) => {
 			let chan = message.channel.name;
 			if (chan == 'audit-log') {
 				if (chanlist.includes('^' + channelname + '^')) {
-					message.guild.channels.cache.find(i => i.name === channelname).setName(nname);
-					message.channel.send(`Channel has been renamed.`);
+					if (chanlist.includes('^' + nname + '^')) {
+						message.channel.send(`${nname} is already the name of a channel in this server.`);
+					} else {
+						message.guild.channels.cache.find(i => i.name === channelname).setName(nname);
+						message.channel.send(`Channel has been renamed.`);
+					}
 				} else {
 					message.channel.send(`${channelname} is not a valid channel in this server.`);
 				}
