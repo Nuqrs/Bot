@@ -10,7 +10,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
-	try{
+//	try{
 	var setnick = 'Cadet1';
 	let memberlist = ',' + member.guild.members.cache.map(m=>m.displayName).join(',') + ',';
 	const welcomeEmbed = new MessageEmbed();
@@ -1204,10 +1204,10 @@ client.on('messageCreate', (message) => {
 	message.channel.send(`Reactions have been removed.`);
 	}
 	*/
-	}
-	catch(error){
-		message.guild.channels.cache.find(i => i.name === 'error-reporting').send(`I almost crashed. Fix your shit. \nError code: MESSAGE`);
-	}
+//	}
+//	catch(error){
+//		message.guild.channels.cache.find(i => i.name === 'error-reporting').send(`I almost crashed. Fix your shit. \nError code: MESSAGE`);
+//	}
 });
 
 client.login(process.env.BOT_TOKEN);
