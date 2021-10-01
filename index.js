@@ -622,35 +622,51 @@ client.on('messageCreate', (message) => {
 			let image = arguss[4];
 			let footer = arguss[5];
 			let channelname = arguss[6];
-			
-			const exampleEmbed = new MessageEmbed()
-			.setColor('RANDOM')
-			.setTitle(title)
-			//.setURL('https://discord.js.org/')
-			.setAuthor(author, authorpic, authorpic)
-			.setDescription(description)
-			.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
-			//.addFields(
-			//        { name: 'Regular field title', value: 'Some value here' },
-			//        { name: '\u200B', value: '\u200B' },
-			//        { name: 'Inline field title', value: 'Some value here', inline: true },
-			//        { name: 'Inline field title', value: 'Some value here', inline: true },
-			//)
-			//.addField('Inline field title', 'Some value here', true)
-			.setImage(image)
-			.setTimestamp()
-			.setFooter(footer, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
-			let chanlist = '^' + message.guild.channels.cache.map(m=>m.name).join('^') + '^';
-			let chan = message.channel.name;
-			if (chan == 'audit-log') {
-				if (chanlist.includes('^' + channelname + '^')) {
-					message.guild.channels.cache.find(i => i.name === channelname).send({ embeds: [exampleEmbed] });
-					message.channel.send(`Custom embed has been sent.`);
+			if (authorpic.includes('.')) {
+				if (authorpic.includes(' ')) {
+					message.channel.send(`Invalid author avatar.`);
 				} else {
-					message.channel.send(`${channelname} is not a valid channel in this server.`);
+					if (image.includes('.')) {
+						if (image.includes(' ')) {
+							message.channel.send(`Invalid image.`);
+						} else {
+							
+							const exampleEmbed = new MessageEmbed()
+							.setColor('RANDOM')
+							.setTitle(title)
+							//.setURL('https://discord.js.org/')
+							.setAuthor(author, authorpic, authorpic)
+							.setDescription(description)
+							.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
+							//.addFields(
+							//        { name: 'Regular field title', value: 'Some value here' },
+							//        { name: '\u200B', value: '\u200B' },
+							//        { name: 'Inline field title', value: 'Some value here', inline: true },
+							//        { name: 'Inline field title', value: 'Some value here', inline: true },
+							//)
+							//.addField('Inline field title', 'Some value here', true)
+							.setImage(image)
+							.setTimestamp()
+							.setFooter(footer, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
+							let chanlist = '^' + message.guild.channels.cache.map(m=>m.name).join('^') + '^';
+							let chan = message.channel.name;
+							if (chan == 'audit-log') {
+								if (chanlist.includes('^' + channelname + '^')) {
+									message.guild.channels.cache.find(i => i.name === channelname).send({ embeds: [exampleEmbed] });
+									message.channel.send(`Custom embed has been sent.`);
+								} else {
+									message.channel.send(`${channelname} is not a valid channel in this server.`);
+								}
+							} else {
+								message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+							}
+						}
+					} else {
+						message.channel.send(`Invalid image.`);
+					}
 				}
 			} else {
-				message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+				message.channel.send(`Invalid author avatar.`);
 			}
 		} else {
 			message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
@@ -671,41 +687,57 @@ client.on('messageCreate', (message) => {
 			let channelid = message.guild.channels.cache.find(i => i.name === channelname);
 			let chanlist = '^' + message.guild.channels.cache.map(m=>m.name).join('^') + '^';
 			let chan = message.channel.name;
-			if (chan == 'audit-log') {
-				if (chanlist.includes('^' + channelname + '^')) {
-					const exampleEmbed = new MessageEmbed()
-					.setColor('RANDOM')
-					.setTitle(ntitle)
-					//.setURL('https://discord.js.org/')
-					.setAuthor(nauthor, nauthorpic, nauthorpic)
-					.setDescription(ndescription)
-					.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
-					//.addFields(
-					//        { name: 'Regular field title', value: 'Some value here' },
-					//        { name: '\u200B', value: '\u200B' },
-					//        { name: 'Inline field title', value: 'Some value here', inline: true },
-					//        { name: 'Inline field title', value: 'Some value here', inline: true },
-					//)
-					//.addField('Inline field title', 'Some value here', true)
-					.setImage(nimage)
-					.setTimestamp()
-					.setFooter(nfooter, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
-					channelid.messages.fetch({limit: 99}).then(msg => {
-						const aospecMessage = msg.filter(msg => msg.embeds[0]);
-						const ospecMessage = aospecMessage.filter(msg => msg.embeds[0]?.description?.includes(odescription));
-						const specMessage = ospecMessage.filter(msg => msg.embeds[0]?.title?.includes(otitle)).map(m=>m.id).join('\n');
-						async function edit() {
-							const message = await channelid.messages.fetch(specMessage);
-							await message.edit({ embeds: [exampleEmbed] });
-						}
-						edit();
-					});
-					message.channel.send(`Embed has been edited.`);
+			if (nauthorpic.includes('.')) {
+				if (nauthorpic.includes(' ')) {
+					message.channel.send(`Invalid author avatar.`);
 				} else {
-					message.channel.send(`${channelname} is not a valid channel in this server.`);
+					if (nimage.includes('.')) {
+						if (nimage.includes(' ')) {
+							message.channel.send(`Invalid image.`);
+						} else {
+							if (chan == 'audit-log') {
+								if (chanlist.includes('^' + channelname + '^')) {
+									const exampleEmbed = new MessageEmbed()
+									.setColor('RANDOM')
+									.setTitle(ntitle)
+									//.setURL('https://discord.js.org/')
+									.setAuthor(nauthor, nauthorpic, nauthorpic)
+									.setDescription(ndescription)
+									.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
+									//.addFields(
+									//        { name: 'Regular field title', value: 'Some value here' },
+									//        { name: '\u200B', value: '\u200B' },
+									//        { name: 'Inline field title', value: 'Some value here', inline: true },
+									//        { name: 'Inline field title', value: 'Some value here', inline: true },
+									//)
+									//.addField('Inline field title', 'Some value here', true)
+									.setImage(nimage)
+									.setTimestamp()
+									.setFooter(nfooter, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
+									channelid.messages.fetch({limit: 99}).then(msg => {
+										const aospecMessage = msg.filter(msg => msg.embeds[0]);
+										const ospecMessage = aospecMessage.filter(msg => msg.embeds[0]?.description?.includes(odescription));
+										const specMessage = ospecMessage.filter(msg => msg.embeds[0]?.title?.includes(otitle)).map(m=>m.id).join('\n');
+										async function edit() {
+											const message = await channelid.messages.fetch(specMessage);
+											await message.edit({ embeds: [exampleEmbed] });
+										}
+										edit();
+									});
+									message.channel.send(`Embed has been edited.`);
+								} else {
+									message.channel.send(`${channelname} is not a valid channel in this server.`);
+								}
+							} else {
+								message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+							}
+						}
+					} else {
+						message.channel.send(`Invalid image.`);
+					}
 				}
 			} else {
-				message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+				message.channel.send(`Invalid author avatar.`);
 			}
 		} else {
 			message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
@@ -721,40 +753,56 @@ client.on('messageCreate', (message) => {
 			let image = arguss[4];
 			let footer = arguss[5];
 			let channelname = arguss[6];
-			
-			const exampleEmbed = new MessageEmbed()
-			.setColor('RANDOM')
-			.setTitle(title)
-			//.setURL('https://discord.js.org/')
-			.setAuthor(author, authorpic, authorpic)
-			.setDescription(description)
-			.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
-			//.addFields(
-			//        { name: 'Regular field title', value: 'Some value here' },
-			//        { name: '\u200B', value: '\u200B' },
-			//        { name: 'Inline field title', value: 'Some value here', inline: true },
-			//        { name: 'Inline field title', value: 'Some value here', inline: true },
-			//)
-			//.addField('Inline field title', 'Some value here', true)
-			.setImage(image)
-			.setTimestamp()
-			.setFooter(footer, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
-			let chanlist = '^' + message.guild.channels.cache.map(m=>m.name).join('^') + '^';
-			let chan = message.channel.name;
-			if (chan == 'audit-log') {
-				if (chanlist.includes('^' + channelname + '^')) {
-					message.guild.channels.cache.find(i => i.name === channelname).send({ embeds: [exampleEmbed] }).then(function (message) {
-						message.react(message.guild.emojis.cache.get('733049184755646516'))
-						message.react(message.guild.emojis.cache.get('733048783046311988'))
-						message.react(message.guild.emojis.cache.get('733049172592295937'))
-					}).catch(function() {
-					});
-					message.channel.send(`Custom embed with reactions has been sent.`);
+			if (authorpic.includes('.')) {
+				if (authorpic.includes(' ')) {
+					message.channel.send(`Invalid author avatar.`);
 				} else {
-					message.channel.send(`${channelname} is not a valid channel in this server.`);
+					if (image.includes('.')) {
+						if (image.includes(' ')) {
+							message.channel.send(`Invalid image.`);
+						} else {
+			
+							const exampleEmbed = new MessageEmbed()
+							.setColor('RANDOM')
+							.setTitle(title)
+							//.setURL('https://discord.js.org/')
+							.setAuthor(author, authorpic, authorpic)
+							.setDescription(description)
+							.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
+							//.addFields(
+							//        { name: 'Regular field title', value: 'Some value here' },
+							//        { name: '\u200B', value: '\u200B' },
+							//        { name: 'Inline field title', value: 'Some value here', inline: true },
+							//        { name: 'Inline field title', value: 'Some value here', inline: true },
+							//)
+							//.addField('Inline field title', 'Some value here', true)
+							.setImage(image)
+							.setTimestamp()
+							.setFooter(footer, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
+							let chanlist = '^' + message.guild.channels.cache.map(m=>m.name).join('^') + '^';
+							let chan = message.channel.name;
+							if (chan == 'audit-log') {
+								if (chanlist.includes('^' + channelname + '^')) {
+									message.guild.channels.cache.find(i => i.name === channelname).send({ embeds: [exampleEmbed] }).then(function (message) {
+										message.react(message.guild.emojis.cache.get('733049184755646516'))
+										message.react(message.guild.emojis.cache.get('733048783046311988'))
+										message.react(message.guild.emojis.cache.get('733049172592295937'))
+									}).catch(function() {
+									});
+									message.channel.send(`Custom embed with reactions has been sent.`);
+								} else {
+									message.channel.send(`${channelname} is not a valid channel in this server.`);
+								}
+							} else {
+								message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+							}
+						}
+					} else {
+						message.channel.send(`Invalid image.`);
+					}
 				}
 			} else {
-				message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+				message.channel.send(`Invalid author avatar.`);
 			}
 		} else {
 			message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
@@ -862,32 +910,48 @@ client.on('messageCreate', (message) => {
 			let nickmember = message.guild.members.cache.find(member => member.displayName === nick);
 			let memberlist = '^' + message.guild.members.cache.map(m=>m.displayName).join('^') + '^';
 			let chan = message.channel.name;
-			if (chan == 'audit-log') {
-				const exampleEmbed = new MessageEmbed()
-				.setColor('RANDOM')
-				.setTitle(title)
-				//.setURL('https://discord.js.org/')
-				.setAuthor(author, authorpic, authorpic)
-				.setDescription(description)
-				.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
-				//.addFields(
-				//        { name: 'Regular field title', value: 'Some value here' },
-				//        { name: '\u200B', value: '\u200B' },
-				//        { name: 'Inline field title', value: 'Some value here', inline: true },
-				//        { name: 'Inline field title', value: 'Some value here', inline: true },
-				//)
-				//.addField('Inline field title', 'Some value here', true)
-				.setImage(image)
-				.setTimestamp()
-				.setFooter(footer, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
-				if (memberlist.includes('^' + nick + '^')) {
-					message.channel.send(`Embed DM has been sent to ${nickmember}.`);
-					nickmember.send({ embeds: [exampleEmbed] });
+			if (authorpic.includes('.')) {
+				if (authorpic.includes(' ')) {
+					message.channel.send(`Invalid author avatar.`);
 				} else {
-					message.channel.send(`${nick} is not a valid nickname of a user in this server.`);
+					if (image.includes('.')) {
+						if (image.includes(' ')) {
+							message.channel.send(`Invalid image.`);
+						} else {
+							if (chan == 'audit-log') {
+								const exampleEmbed = new MessageEmbed()
+								.setColor('RANDOM')
+								.setTitle(title)
+								//.setURL('https://discord.js.org/')
+								.setAuthor(author, authorpic, authorpic)
+								.setDescription(description)
+								.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
+								//.addFields(
+								//        { name: 'Regular field title', value: 'Some value here' },
+								//        { name: '\u200B', value: '\u200B' },
+								//        { name: 'Inline field title', value: 'Some value here', inline: true },
+								//        { name: 'Inline field title', value: 'Some value here', inline: true },
+								//)
+								//.addField('Inline field title', 'Some value here', true)
+								.setImage(image)
+								.setTimestamp()
+								.setFooter(footer, 'https://cdn.discordapp.com/emojis/417837304036589568.png?v=1');
+								if (memberlist.includes('^' + nick + '^')) {
+									message.channel.send(`Embed DM has been sent to ${nickmember}.`);
+									nickmember.send({ embeds: [exampleEmbed] });
+								} else {
+									message.channel.send(`${nick} is not a valid nickname of a user in this server.`);
+								}
+							} else {
+								message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+							}
+						}
+					} else {
+						message.channel.send(`Invalid image.`);
+					}
 				}
 			} else {
-				message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+				message.channel.send(`Invalid author avatar.`);
 			}
 		} else {
 			message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
