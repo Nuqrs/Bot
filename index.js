@@ -857,6 +857,33 @@ client.on('messageCreate', (message) => {
 		}
 	}
 	
+	if (commandos === "d$dm$") {
+		if (message.channel.type != 'DM') {
+			let b = arguss[0];
+			let nick = arguss[1];
+			let nickmember = message.guild.members.cache.find(member => member.displayName === nick);
+			let memberlist = '^' + message.guild.members.cache.map(m=>m.displayName).join('^') + '^';
+			
+			let chan = message.channel.name;
+			if (chan == 'audit-log') {
+				if (memberlist.includes('^' + nick + '^')) {
+					let channelid = nickmember.user.dmChannel;
+					channelid.messages.fetch({limit: 99}).then(msg => {
+						const specMessage = msg.filter(msg => msg.content.includes(b));
+						channelid.bulkDelete(specMessage);
+					});
+					message.channel.send(`DM has been deleted.`);
+				} else {
+					message.channel.send(`${nick} is not a valid nickname of a user in this server.`);
+				}
+			} else {
+				message.channel.send(`${chan} is not a valid channel to use this command in, ***DUMBASS***.`);
+			}
+		} else {
+			message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
+		}
+	}
+	
 	if (commandos === "e$m$") {
 		if (message.channel.type != 'DM') {
 			let b = arguss[0];
@@ -906,7 +933,7 @@ client.on('messageCreate', (message) => {
 						}
 						edit();
 					});
-					message.channel.send(`Message has been edited.`);
+					message.channel.send(`DM has been edited.`);
 				} else {
 					message.channel.send(`${nick} is not a valid nickname of a user in this server.`);
 				}
