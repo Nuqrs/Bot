@@ -10,7 +10,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
-//	try{
+	try{
 	var setnick = 'Cadet1';
 	let memberlist = ',' + member.guild.members.cache.map(m=>m.displayName).join(',') + ',';
 	const welcomeEmbed = new MessageEmbed();
@@ -44,7 +44,7 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on('messageCreate', (message) => {
-	try{
+//	try{
 	const msg = message.content.toLowerCase();
 /*	
 	if(message.author.id == '216628403921485824') {
