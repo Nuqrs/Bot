@@ -46,9 +46,9 @@ client.on('messageCreate', (message) => {
 		if(msg == '?help') {
 			if (message.channel.type != 'DM') {
 				message.delete();
-				message.channel.send('In order to roll, type **?[sides of dice] [modifier]**. \nI currently support 2, 4, 6, 8, 10, 12, 20, and 100 sided dice.');
+				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]**.');
 			} else {
-				message.channel.send('In order to roll, type **?[sides of dice] [modifier]**. \nI currently support 2, 4, 6, 8, 10, 12, 20, and 100 sided dice.');
+				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]**.');
 			}
 		}
 		
