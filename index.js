@@ -36,7 +36,7 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on('messageCreate', (message) => {
-//	try{
+	try{
 		const msg = message.content.toLowerCase();
 /*	
 		if(message.author.id == '216628403921485824') {
@@ -140,8 +140,7 @@ client.on('messageCreate', (message) => {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
 			if (Number.isNaN(+a) || Number.isNaN(+b)) {
-				//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
-				message.reply(`Not integer` + a.toString() + b.toString());
+				message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
 			} else {
 				if (a === 0) {
 					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
@@ -168,8 +167,7 @@ client.on('messageCreate', (message) => {
 							}
 						}
 					} else {
-						//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
-						message.reply(`Not positive` + a.toString());
+						message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
 					}
 				}
 			}
@@ -575,10 +573,10 @@ client.on('messageCreate', (message) => {
 				message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
 			}
 		}
-//	}
-//	catch(error){
-//		message.guild.channels.cache.find(i => i.name === 'dm-rolls').send(`I almost crashed. Fix your shit. \nError code: MESSAGE`);
-//	}
+	}
+	catch(error){
+		message.guild.channels.cache.find(i => i.name === 'dm-rolls').send(`I almost crashed. Fix your shit. \nError code: MESSAGE`);
+	}
 });
 
 client.login(process.env.BOT_TOKEN);
