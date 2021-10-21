@@ -164,9 +164,9 @@ client.on('messageCreate', (message) => {
 							}
 						} else {
 							if (rand === a || rand === 1) {
-								message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString()));
+								message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString());
 							} else {
-								message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}.\n**Total**: ` + rands.toString()));
+								message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}.\n**Total**: ` + rands.toString());
 							}
 						}
 					} else {
