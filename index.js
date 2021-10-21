@@ -139,7 +139,7 @@ client.on('messageCreate', (message) => {
 		if (command === "?roll") {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
-			if (a === NaN || b === NaN) {
+			if (Number.isNaN(+a) || Number.isNaN(+b)) {
 				//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
 				message.reply(`Not integer` + a.toString() + b.toString());
 			} else {
