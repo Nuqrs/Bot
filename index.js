@@ -108,9 +108,9 @@ client.on('messageCreate', (message) => {
 			
 			if (a === 'dumb' && b === 'is') {
 				if (name!='nuqrs') {
-					message.channel.send(`On a scale of 1-10, ${name} has received a dumbass score of ` + list[rand].toString());
+					message.channel.send(`On a scale of 1-10, ${name} has received a dumbass score of **` + list[rand].toString() + `**.`);
 				} else {
-					message.channel.send(`On a scale of 1-10, ${name} has received a dumbass score of ` + list[0].toString());
+					message.channel.send(`On a scale of 1-10, ${name} has received a dumbass score of **` + list[0].toString() + `**.`);
 				}
 			} else {
 			}
@@ -137,8 +137,8 @@ client.on('messageCreate', (message) => {
 		}
 		
 		if (command === "?roll") {
-			var a = args[0];
-			var b = args[1];
+			var a = parseInt(args[0],10);
+			var b = parseInt(args[1],10);
 			if (a === parseInt(args[0],10) && b === parseInt(args[1],10)) {
 				if (a = 0) {
 					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
