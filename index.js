@@ -166,11 +166,13 @@ client.on('messageCreate', (message) => {
 							}
 						}
 					} else {
-						message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+						//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+						message.reply(`Not positive`);
 					}
 				}
 			} else {
-				message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!` + a.toString());
+				//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+				message.reply(`Not integer`) + a.toString());
 			}
 		}
 		
