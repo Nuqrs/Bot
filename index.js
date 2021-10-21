@@ -49,9 +49,9 @@ client.on('messageCreate', (message) => {
 		if (msg == '?help') {
 			if (message.channel.type != 'DM') {
 				message.delete();
-				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]**.');
+				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]** or **?r [sides of dice] [modifier]**.');
 			} else {
-				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]**.');
+				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]** or **?r [sides of dice] [modifier]**.');
 			}
 		}
 		
