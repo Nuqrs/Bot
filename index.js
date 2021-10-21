@@ -147,7 +147,6 @@ client.on('messageCreate', (message) => {
 						var rand = Math.floor(Math.random() * a + 1);
 						var rands = Math.floor(rand + b);
 						
-						message.delete();
 						if (a === 20) {
 							if (rand === a) {
 								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `** - ***Critical Hit***. \nYour result is **` + rands.toString() + `**.`);
