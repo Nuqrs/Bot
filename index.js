@@ -137,9 +137,9 @@ client.on('messageCreate', (message) => {
 		}
 		
 		if (command === "?roll") {
-			var a = parseInt(args[0],10);
-			var b = parseInt(args[1],10);
-			if (a === parseInt(args[0],10) && b === parseInt(args[1],10)) {
+			var a = args[0];
+			var b = args[1];
+			if (Number.isInteger(a)) {
 				if (a = 0) {
 					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
 				} else {
