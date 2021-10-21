@@ -139,7 +139,10 @@ client.on('messageCreate', (message) => {
 		if (command === "?roll") {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
-			if (a != NaN) {
+			if (isNaN(a) || isNan(b)) {
+				//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+				message.reply(`Not integer` + a.toString() + b.toString());
+			} else {
 				if (a === 0) {
 					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
 				} else {
@@ -169,9 +172,6 @@ client.on('messageCreate', (message) => {
 						message.reply(`Not positive` + a.toString());
 					}
 				}
-			} else {
-				//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
-				message.reply(`Not integer` + a.toString());
 			}
 		}
 		
