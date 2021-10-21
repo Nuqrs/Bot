@@ -106,7 +106,7 @@ client.on('messageCreate', (message) => {
 		
 			var rand = Math.floor(Math.random() * list.length);
 			
-			if (a = 'dumb' && b = 'is') {
+			if (a === 'dumb' && b === 'is') {
 				if (name!='nuqrs') {
 					message.channel.send(`On a scale of 1-10, ${name} has received a dumbass score of ` + list[rand].toString());
 				} else {
@@ -134,6 +134,44 @@ client.on('messageCreate', (message) => {
 			var rand = Math.floor(Math.random() * list.length);
 			
 			message.channel.send(list[rand].toString());
+		}
+		
+		if (command === "?roll") {
+			var a = args[0];
+			var b = args[1];
+			if (a === parseInt(args[0],10) && b === parseInt(args[1],10)) {
+				if (a = 0) {
+					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
+				} else {
+					if (a > 0) {
+						var rand = Math.floor(Math.random() * a + 1);
+						var rands = Math.floor(rand + b);
+						
+						message.delete();
+						if (a = 20) {
+							if (rand === a) {
+								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `** - ***Critical Hit***. \nYour result is **` + rands.toString() + `**.`);
+							} else {
+								if (rand === 1) {
+									message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `** - ***Critical Fail***. \nYour result is **` + rands.toString() + `**.`);
+								} else {
+									message.reply(`You rolled a d${a} + ${b}. \nYou rolled a ` + rand.toString() + `. \nYour result is **` + rands.toString() + `**.`);
+								}
+							}
+						} else {
+							if (rand === a || rand === 1) {
+								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `**. \nYour result is **` + rands.toString() + `**.`);
+							} else {
+								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a ` + rand.toString() + `. \nYour result is **` + rands.toString() + `**.`);
+							}
+						}
+					} else {
+						message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+					}
+				}
+			} else {
+				message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+			}
 		}
 		
 		const argus = message.content.trim().split(',');
