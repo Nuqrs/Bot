@@ -140,7 +140,7 @@ client.on('messageCreate', (message) => {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
 			if (a != NaN) {
-				if (a = 0) {
+				if (a === 0) {
 					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
 				} else {
 					if (a > 0) {
@@ -148,7 +148,7 @@ client.on('messageCreate', (message) => {
 						var rands = Math.floor(rand + b);
 						
 						message.delete();
-						if (a = 20) {
+						if (a === 20) {
 							if (rand === a) {
 								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `** - ***Critical Hit***. \nYour result is **` + rands.toString() + `**.`);
 							} else {
