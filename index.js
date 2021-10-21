@@ -128,7 +128,7 @@ client.on('messageCreate', (message) => {
 				'How goes the day, friend?',
 				'Oy mate.',
 				'Greetings to thee, fair maiden.',
-				'OH! My back- OOOOH... anyway, you need something?
+				'OH! My back- OOOOH... anyway, you need something?'
 			];
 			
 			var rand = Math.floor(Math.random() * list.length);
