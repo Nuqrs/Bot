@@ -43,7 +43,10 @@ client.on('messageCreate', (message) => {
 			message.delete();
 		}
 */	
-		if(msg == '?help') {
+		if (message.author == client.user)
+			return;
+		
+		if (msg == '?help') {
 			if (message.channel.type != 'DM') {
 				message.delete();
 				message.channel.send('In order to roll, type **?roll [sides of dice] [modifier]**.');
@@ -60,7 +63,7 @@ client.on('messageCreate', (message) => {
 		}
 */
 		
-		if(msg == 'jaleed, who made you?') {
+		if (msg == 'jaleed, who made you?') {
 			if (message.channel.type != 'DM') {
 				message.channel.send('<@!216628403921485824>');
 			} else {
@@ -68,7 +71,7 @@ client.on('messageCreate', (message) => {
 			}
 		}
 	
-		if(msg == '?ping') {
+		if (msg == '?ping') {
 			if (message.channel.type != 'DM') {
 				message.delete();
 				message.channel.send('Pong, bitch!');
@@ -136,7 +139,7 @@ client.on('messageCreate', (message) => {
 			message.channel.send(list[rand].toString());
 		}
 		
-		if (command === "?roll") {
+		if (command === "?roll" || command === "?r") {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
 			if (Number.isNaN(+a) || Number.isNaN(+b)) {
@@ -151,19 +154,19 @@ client.on('messageCreate', (message) => {
 						
 						if (a === 20) {
 							if (rand === a) {
-								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `** - ***Critical Hit***. \nYour result is **` + rands.toString() + `**.`);
+								message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString() + `\n***Critical Hit!***`);
 							} else {
 								if (rand === 1) {
-									message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `** - ***Critical Fail***. \nYour result is **` + rands.toString() + `**.`);
+									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString() + `\n***Critical Fail!***`);
 								} else {
-									message.reply(`You rolled a d${a} + ${b}. \nYou rolled a ` + rand.toString() + `. \nYour result is **` + rands.toString() + `**.`);
+									message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}.\n**Total**: ` + rands.toString());
 								}
 							}
 						} else {
 							if (rand === a || rand === 1) {
-								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a **` + rand.toString() + `**. \nYour result is **` + rands.toString() + `**.`);
+								message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString()));
 							} else {
-								message.reply(`You rolled a d${a} + ${b}. \nYou rolled a ` + rand.toString() + `. \nYour result is **` + rands.toString() + `**.`);
+								message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}.\n**Total**: ` + rands.toString()));
 							}
 						}
 					} else {
