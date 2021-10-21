@@ -172,7 +172,7 @@ client.on('messageCreate', (message) => {
 				}
 			} else {
 				//message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
-				message.reply(`Not integer`) + a.toString());
+				message.reply(`Not integer` + a.toString());
 			}
 		}
 		
