@@ -142,35 +142,65 @@ client.on('messageCreate', (message) => {
 		if (command === "?roll" || command === "?r") {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
-			if (Number.isNaN(+a) || Number.isNaN(+b)) {
+			if (Number.isNaN(+a)) {
 				message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
 			} else {
-				if (a === 0) {
-					message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
-				} else {
-					if (a > 0) {
-						var rand = Math.floor(Math.random() * a + 1);
-						var rands = Math.floor(rand + b);
-						
-						if (a === 20) {
-							if (rand === a) {
-								message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString() + `\n***Critical Hit!***`);
-							} else {
-								if (rand === 1) {
-									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString() + `\n***Critical Fail!***`);
+				if (Number.isNaN(+b)) {
+					if (a === 0) {
+						message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
+					} else {
+						if (a > 0) {
+							var rand = Math.floor(Math.random() * a + 1);
+							
+							if (a === 20) {
+								if (rand === a) {
+									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Hit!***`);
 								} else {
-									message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}.\n**Total**: ` + rands.toString());
+									if (rand === 1) {
+										message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Fail!***`);
+									} else {
+										message.reply(`**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
+									}
+								}
+							} else {
+								if (rand === a || rand === 1) {
+									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString());
+								} else {
+									message.reply(`**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
 								}
 							}
 						} else {
-							if (rand === a || rand === 1) {
-								message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}.\n**Total**: ` + rands.toString());
-							} else {
-								message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}.\n**Total**: ` + rands.toString());
-							}
+							message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
 						}
+					}
+				} else {
+					if (a === 0) {
+						message.reply(`OH NO! You rolled a d0! The universe is imploding! MY SHOP!`);
 					} else {
-						message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+						if (a > 0) {
+							var rand = Math.floor(Math.random() * a + 1);
+							var rands = Math.floor(rand + b);
+							
+							if (a === 20) {
+								if (rand === a) {
+									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Hit!***`);
+								} else {
+									if (rand === 1) {
+										message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Fail!***`);
+									} else {
+										message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
+									}
+								}
+							} else {
+								if (rand === a || rand === 1) {
+									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString());
+								} else {
+									message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
+								}
+							}
+						} else {
+							message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
+						}
 					}
 				}
 			}
