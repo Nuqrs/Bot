@@ -217,6 +217,87 @@ client.on('messageCreate', (message) => {
 			}
 		}
 		
+		if (command === "?roii") {
+			var a = parseInt(args[0],10);
+			var b = parseInt(args[1],10);
+			let c = message.author;
+			var d = parseInt(args[2],10);
+			if (Number.isNan(+d)) {
+				var d = parseInt(1,10);
+			if (Number.isNaN(+a)) {
+				message.delete();
+			} else {
+				if (Number.isNaN(+b)) {
+					if (a === 0) {
+						message.delete();
+					} else {
+						if (a > 0) {
+							var rand = Math.floor(Math.random() * d + 1 + a - d);
+							
+							if (a === 20) {
+								if (rand === a) {
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Hit!***`);
+								} else {
+									if (rand === 1) {
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Fail!***`);
+									} else {
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
+									}
+								}
+							} else {
+								if (rand === a || rand === 1) {
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString());
+								} else {
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
+								}
+							}
+						} else {
+							message.delete();
+						}
+					}
+				} else {
+					if (a === 0) {
+						message.delete();
+					} else {
+						if (a > 0) {
+							var rand = Math.floor(Math.random() * d + 1 + a - d);
+							var rands = Math.floor(rand + b);
+							
+							if (a === 20) {
+								if (rand === a) {
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Hit!***`);
+								} else {
+									if (rand === 1) {
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Fail!***`);
+									} else {
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
+									}
+								}
+							} else {
+								if (rand === a || rand === 1) {
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString());
+								} else {
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
+								}
+							}
+						} else {
+							message.delete();
+						}
+					}
+				}
+			}
+		}
+		
 		const argus = message.content.trim().split(',');
 		const commando = argus.shift().toLowerCase();
 		
