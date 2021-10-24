@@ -224,6 +224,8 @@ client.on('messageCreate', (message) => {
 			var d = parseInt(args[2],10);
 			if (Number.isNan(+d)) {
 				var d = parseInt(1,10);
+			} else {
+			}
 			if (Number.isNaN(+a)) {
 				message.delete();
 			} else {
