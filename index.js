@@ -36,7 +36,7 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on('messageCreate', (message) => {
-//	try{
+	try{
 		const msg = message.content.toLowerCase();
 /*	
 		if(message.author.id == '216628403921485824') {
@@ -222,7 +222,7 @@ client.on('messageCreate', (message) => {
 			var b = parseInt(args[1],10);
 			let c = message.author;
 			var d = parseInt(args[2],10);
-			if (Number.isNan(+d)) {
+			if (Number.isNaN(+d)) {
 				var d = parseInt(1,10);
 			} else {
 			}
@@ -700,10 +700,10 @@ client.on('messageCreate', (message) => {
 				message.channel.send(`Did you seriously just try to **DM** that command to me? You *have* to be the biggest idiot of all time. Gonna make a mark of that right here...`);
 			}
 		}
-//	}
-//	catch(error){
-//		message.guild.channels.cache.find(i => i.name === 'dm-rolls').send(`I almost crashed. Fix your shit. \nError code: MESSAGE`);
-//	}
+	}
+	catch(error){
+		message.guild.channels.cache.find(i => i.name === 'dm-rolls').send(`I almost crashed. Fix your shit. \nError code: MESSAGE`);
+	}
 });
 
 client.login(process.env.BOT_TOKEN);
