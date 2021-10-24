@@ -129,8 +129,8 @@ client.on('messageCreate', (message) => {
 				'OH HELLOOOOOOOOOOOOOOOOOO!!!',
 				'Welcome to my shop, the Enamored Fish! Oh!',
 				'How goes the day, friend?',
-				'Oy mate.',
-				'Greetings to thee, fair maiden.',
+				'What a beautiful day! Huh, what do you want?',
+				'Ooooh, greetings, fair maiden.',
 				'OH! My back- OOOOH... anyway, you need something?'
 			];
 			
@@ -142,6 +142,7 @@ client.on('messageCreate', (message) => {
 		if (command === "?roll" || command === "?r") {
 			var a = parseInt(args[0],10);
 			var b = parseInt(args[1],10);
+			let c = message.author;
 			if (Number.isNaN(+a)) {
 				message.reply(`No rigged dice here! Get out of here with your exotic infernal dice!`);
 			} else {
@@ -154,19 +155,24 @@ client.on('messageCreate', (message) => {
 							
 							if (a === 20) {
 								if (rand === a) {
-									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Hit!***`);
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Hit!***`);
 								} else {
 									if (rand === 1) {
-										message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Fail!***`);
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString() + `\n***Critical Fail!***`);
 									} else {
-										message.reply(`**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
 									}
 								}
 							} else {
 								if (rand === a || rand === 1) {
-									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString());
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**)\n**Total**: ` + rand.toString());
 								} else {
-									message.reply(`**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `)\n**Total**: ` + rand.toString());
 								}
 							}
 						} else {
@@ -183,19 +189,24 @@ client.on('messageCreate', (message) => {
 							
 							if (a === 20) {
 								if (rand === a) {
-									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Hit!***`);
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Hit!***`);
 								} else {
 									if (rand === 1) {
-										message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Fail!***`);
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString() + `\n***Critical Fail!***`);
 									} else {
-										message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
+										message.delete();
+										message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
 									}
 								}
 							} else {
 								if (rand === a || rand === 1) {
-									message.reply(`**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString());
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (**` + rand.toString() + `**) + ${b}\n**Total**: ` + rands.toString());
 								} else {
-									message.reply(`**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
+									message.delete();
+									message.channel.send(`${c} :game_die:\n**Result**: 1d${a} (` + rand.toString() + `) + ${b}\n**Total**: ` + rands.toString());
 								}
 							}
 						} else {
