@@ -370,7 +370,7 @@ client.on('messageCreate', (message) => {
 							.setColor('RANDOM')
 							.setTitle(title)
 							//.setURL('https://discord.js.org/')
-							.setAuthor(author, authorpic, authorpic)
+							.setAuthor({ name: author, iconURL: authorpic, url: authorpic })
 							.setDescription(description)
 							.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
 							//.addFields(
@@ -428,7 +428,7 @@ client.on('messageCreate', (message) => {
 								.setColor('RANDOM')
 								.setTitle(ntitle)
 								//.setURL('https://discord.js.org/')
-								.setAuthor(nauthor, nauthorpic, nauthorpic)
+								.setAuthor({ name: nauthor, iconURL: nauthorpic, url: nauthorpic })
 								.setDescription(ndescription)
 								.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
 								//.addFields(
@@ -608,7 +608,7 @@ client.on('messageCreate', (message) => {
 							.setColor('RANDOM')
 							.setTitle(title)
 							//.setURL('https://discord.js.org/')
-							.setAuthor(author, authorpic, authorpic)
+							.setAuthor({ name: author, iconURL: authorpic, url: authorpic })
 							.setDescription(description)
 							.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
 							//.addFields(
@@ -664,7 +664,7 @@ client.on('messageCreate', (message) => {
 								.setColor('RANDOM')
 								.setTitle(ntitle)
 								//.setURL('https://discord.js.org/')
-								.setAuthor(nauthor, nauthorpic, nauthorpic)
+								.setAuthor({ name: nauthor, iconURL: nauthorpic, url: nauthorpic })
 								.setDescription(ndescription)
 								.setThumbnail('https://cdn.discordapp.com/icons/391183651649486848/a_a2fc07c28a76c4aae91d4fa38ff567c8.png?size=512')
 								//.addFields(
